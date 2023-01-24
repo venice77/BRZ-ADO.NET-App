@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Inwentarz biura";
+}
+@model PrzedmiotModel
+
+</script>
+<div class="text-center">
+    <h3 class="display-6">Usuwasz przedmiot z bazy!</h3>
+    
+    <form asp-action="DeleteItem">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group form-inline">
+            <label asp-for="Nazwa" class="control-label">Nazwa</label>
+            <input asp-for="Nazwa" class="form-control" disabled />
+        </div>
+        <div class="form-group form-inline">
+            <label asp-for="dataDodania" class="control-label">Data Dodania</label>
+            <input type="datetime-local" asp-for="dataDodania" class="form-control" disabled/>
+        </div>
+        <div class="form-group form-inline">
+            <label asp-for="dataZwrotu" class="control-label">Data Dodania</label>
+            @if (Model.dataZwrotu == DateTime.MinValue)
+            {
+                <input type="text" class="form-control" disabled />
+            }
+            else{
+                <input type="datetime-local" asp-for="dataZwrotu" class="form-control" value="" disabled />
+            }
+           
+        </div>
+        <div class="form-group">
+            <input asp-for="ID" class="form-control" hidden/>
+        </div>
+        
+        <p class="padding-2">Czy jesteś tego pewny</p>
+        <div class="form-group">
+            <input type="submit" value="Potwierdzam, usuń!" class="btn btn-danger" />
+        </div>
+    </form>
+
+    
+    
+</div>

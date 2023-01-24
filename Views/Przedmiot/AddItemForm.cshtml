@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Inwentarz biura";
+}
+@model PrzedmiotModel
+<script type="text/javascript">
+    window.addEventListener('load', () => {
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        now.setMilliseconds(null)
+        now.setSeconds(null)
+        document.getElementById('datadod').value = now.toISOString().slice(0, -1);
+    });
+</script>
+<div class="text-center">
+    <form asp-action="AddItem">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row ">
+            <label asp-for="Nazwa" class="control-label col-auto m-2">Nazwa</label>
+            <input asp-for="Nazwa" class="form-control col-auto m-2" />
+            <span asp-validation-for="Nazwa" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <label asp-for="dataDodania" class="control-label col-auto m-2">Data Dodania</label>
+            <input id="datadod" type="datetime-local" asp-for="dataDodania" class="form-control col-auto m-2" />
+            <span asp-validation-for="dataDodania" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <input type="submit" value="Utwórz" class="btn btn-primary col-auto m-2" />
+        </div>
+    </form>
+
+    
+    
+</div>

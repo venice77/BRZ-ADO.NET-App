@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Inwentarz biura";
+}
+@model List<PrzedmiotModel>
+
+
+
+<div class="text-center">
+    <h3 class="display-4">Lista rzeczy znalezionych</h3>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Data Dodania</th>
+            <th scope="col">Data Zwrotu</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var przedmiot in Model)
+    {
+        @if (przedmiot.dataZwrotu != DateTime.MinValue)
+        {
+            <tr class="text-muted">
+                <td>@przedmiot.ID</td>
+                <td>@przedmiot.Nazwa</td>
+                <td>@przedmiot.dataDodania</td>
+                <td>@przedmiot.dataZwrotu</td>
+                <td>
+                    <button class="btn btn-outline-success" disabled><img src="~/icon/check-good-yes.svg" /></button>
+                    <button class="btn btn-outline-warning" disabled><img src="~/icon/edit-write.svg" /></button>
+                    <button class="btn btn-outline-danger" disabled><img src="~/icon/error.svg" /></button>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>@przedmiot.ID</td>
+                <td>@przedmiot.Nazwa</td>
+                <td>@przedmiot.dataDodania</td>
+                <td></td>
+                <td>
+                    <a class="btn btn-outline-success" asp-action="ReturnItem" asp-route-id="@przedmiot.ID"><img src="~/icon/check-good-yes.svg" /></a>
+                    <a class="btn btn-outline-warning" asp-action="EditItemForm" asp-route-id="@przedmiot.ID"><img src="~/icon/edit-write.svg" /></a>
+                    <a class="btn btn-outline-danger" asp-action="DeleteItemForm" asp-route-id="@przedmiot.ID"><img src="~/icon/error.svg" /></a>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+    </table>
+</div>
